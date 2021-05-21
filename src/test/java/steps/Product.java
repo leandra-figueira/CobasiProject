@@ -12,6 +12,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.*;
 
 public class Product extends Base {
+
+    String sku = "3781460";
+
     private Base base;
 
     public Product (Base base) { this.base = base; }
@@ -39,7 +42,7 @@ public class Product extends Base {
 
     @When("^I select \"([^\"]*)\"$")
     public void iSelect(String product)  {
-        base.driver.findElement(By.id("nm-product-3781460")).click();
+        base.driver.findElement(By.id("nm-product-" + sku)).click();
     }
 
     @Then("^The page title is \"([^\"]*)\"$")
@@ -54,7 +57,6 @@ public class Product extends Base {
 
     @And("^The price is \"([^\"]*)\"$")
     public void thePriceIs(String price) {
-        String test = base.driver.findElement(By.cssSelector(".d-block.price__por")).getText();
         assertTrue(base.driver.findElement(By.cssSelector(".d-block.price__por")).getText().contains(price));
     }
 }
